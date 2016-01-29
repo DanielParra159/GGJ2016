@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 [RequireComponent(typeof(Life))]
 //[RequireComponent(typeof(Attack))]
+[RequireComponent(typeof(CharacterController))]
 public class Hero : MonoBehaviour {
 
     [Tooltip("Velocidad de movimiento")]
-    [Range(1, 100)]
+    [Range(0, 100)]
     public float movSpeed = 10;
     protected float currentMovSpeed = 10;
     [Tooltip("Cadencia disparo, en segundos")]
@@ -16,26 +18,66 @@ public class Hero : MonoBehaviour {
     [Range(1, 100)]
     public float shootDamage = 1;
 
-    protected Transform m_transform;
-    protected Pausable m_pausable;
+    protected Transform myTransform;
+    protected CharacterController characterController;
 
-    protected Life m_life;
+    protected Pausable pausable;
+
+    protected Life life;
 
 	// Use this for initialization
 	void Start () {
-        m_transform = transform;
-        m_pausable = new Pausable(onPause, onResume);
+        myTransform = transform;
+        characterController = gameObject.GetComponent<CharacterController>();
+        pausable = new Pausable(onPause, onResume);
 
-        m_life = gameObject.GetComponent<Life>();
-        m_life.registerOnDead(onDead);
-        m_life.registerOnDamage(onDamage);
+        life = gameObject.GetComponent<Life>();
+        life.registerOnDead(onDead);
+        life.registerOnDamage(onDamage);
             
         currentMovSpeed = movSpeed;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (m_pausable.Check()) return;
+        if (pausable.Check()) return;
+
+
+    }
+    void FixedUpdate()
+    {
+        if (pausable.Check()) return;
+
+        Vector2 movAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.LeftStick, GamepadInput.GamePad.Index.One);
+        if (movAxis == Vector2.zero)
+        {
+            movAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.KeyboardL, GamepadInput.GamePad.Index.One);
+        }
+
+        Vector2 shootAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.RightStick, GamepadInput.GamePad.Index.One);
+        if (shootAxis == Vector2.zero)
+        {
+            shootAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.KeyboardR, GamepadInput.GamePad.Index.One);
+        }
+        if (movAxis != Vector2.zero)
+        {
+            characterController.Move(new Vector3(movAxis.x, 0.0f, movAxis.y) * Time.fixedTime * movSpeed);
+        }
+        Vector3 lookDir;
+        if (shootAxis == Vector2.zero)
+        {
+            lookDir = (Vector3.right * movAxis.x + Vector3.forward * movAxis.y);
+        }
+        else
+        {
+            lookDir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
+        }
+
+        if (lookDir != Vector3.zero)
+        {
+            myTransform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
+        }
+
     }
     public void onDamage(float currentLif)
     {
