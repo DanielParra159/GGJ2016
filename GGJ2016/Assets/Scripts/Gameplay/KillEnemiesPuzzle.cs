@@ -14,6 +14,8 @@ public class KillEnemiesPuzzle : MonoBehaviour {
 
     protected bool firstTime = true;
 
+    public bool dontKillEnemis = false;
+
 
 	// Use this for initialization
     void OnEnable()
@@ -44,7 +46,7 @@ public class KillEnemiesPuzzle : MonoBehaviour {
 
     public void onDead()
     {
-        if (fail) return;
+        if (fail || dontKillEnemis) return;
         if (sort)
         {
             if (enemies[currentEnemyToTest].GetComponent<Life>().isAlive())
