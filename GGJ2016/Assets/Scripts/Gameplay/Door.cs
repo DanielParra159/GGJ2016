@@ -15,6 +15,9 @@ public class Door : MonoBehaviour {
     public float chronometerTime = 10.0f;
     protected float currentChronometerTime = 10.0f;
 
+    public AudioClip m_onOpen;
+    public AudioClip m_onClose;
+
     void Start()
     {
         collider = gameObject.GetComponent<BoxCollider>();
@@ -45,11 +48,19 @@ public class Door : MonoBehaviour {
     {
         opened = true;
         collider.enabled = false;
+        if (m_onOpen != null)
+        {
+            SoundManager.instance.PlaySingle(m_onOpen);
+        }
     }
     public void close()
     {
         opened = false;
         collider.enabled = true;
+        if (m_onClose != null)
+        {
+            SoundManager.instance.PlaySingle(m_onClose);
+        }
     }
 
     void OnTriggerEnter(Collider other)

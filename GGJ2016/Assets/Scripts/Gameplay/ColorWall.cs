@@ -15,6 +15,8 @@ public class ColorWall : MonoBehaviour {
 
     protected Renderer renderer;
 
+    public AudioClip m_onCollision;
+
 	// Use this for initialization
 	void Start () {
         renderer = GetComponent<Renderer>();
@@ -27,6 +29,10 @@ public class ColorWall : MonoBehaviour {
 
     public void collision(float distance)
     {
+        if (m_onCollision != null)
+        {
+            SoundManager.instance.PlaySingle(m_onCollision);
+        }
         for (int i = 0; i <ranges.Length; ++i)
         {
             if (distance < ranges[i].distance )

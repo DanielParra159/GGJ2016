@@ -48,6 +48,8 @@ public class Shoot : MonoBehaviour {
         Debug.Log(direction);
         gameObject.SetActive(true);
         this.owner = owner;
+
+        gameObject.GetComponentInChildren<Animator>().SetTrigger("shoot");
     }
 
     void OnCollisionEnter(Collision collision)
