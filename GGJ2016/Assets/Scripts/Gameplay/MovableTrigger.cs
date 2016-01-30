@@ -44,7 +44,8 @@ public class MovableTrigger : MonoBehaviour
 	}
 	void OnEnable()
     {
-        transform.position = origPos;
+        if (origPos != Vector3.zero)
+            transform.position = origPos;
     }
 	// Update is called once per frame
 	void Update () {
