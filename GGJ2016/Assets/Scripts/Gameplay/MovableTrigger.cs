@@ -17,12 +17,14 @@ public class MovableTrigger : MonoBehaviour
 
     protected bool enter = false;
     protected Vector3 forceDir;
+    protected Vector3 origPos;
 
     
     protected Hero hero;
 
 	// Use this for initialization
 	void Start () {
+        origPos = transform.position;
         if (dir == Movable.DIR.LEFT)
         {
             forceDir.x = -1;
@@ -40,7 +42,10 @@ public class MovableTrigger : MonoBehaviour
             forceDir.z = -1;
         }
 	}
-	
+	void OnEnable()
+    {
+        transform.position = origPos;
+    }
 	// Update is called once per frame
 	void Update () {
         if (enter)
