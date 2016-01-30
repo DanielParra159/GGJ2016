@@ -16,7 +16,8 @@ public class KillEnemiesPuzzle : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+    void OnEnable()
+    {
         if (firstTime)
         {
             for (int i = 0; i < enemies.Length; ++i)
