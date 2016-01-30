@@ -4,4 +4,7 @@
     public void changeMap(GameObject map, Transform playerPosition)
     {
 
+    }    public void spawnEnemy(Vector3 position)
+    {
+
     }}
