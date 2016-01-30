@@ -4,13 +4,16 @@
     {
         STATE_GAME, STATE_DEATH, STATE_CHANGE_MAP
     }
+    public GameObject circleTriggers;
     protected GAME_STATES currentState;
     public Mapa currentMap;
     protected Mapa initialMap;
     public GameObject hero;
     public Transform spawnPosition;
     public FollowTarget camera;    void Awake()    {        //if (instance == null)        {            instance = this;
-            hero = (GameObject)Instantiate(hero, spawnPosition.position, Quaternion.identity);            //    DontDestroyOnLoad(instance);        }        /* else if (instance != this)         {             Destroy(this.gameObject);         }*/    }	// Use this for initialization	void Start () {
+            hero = (GameObject)Instantiate(hero, spawnPosition.position, Quaternion.identity);
+            circleTriggers = (GameObject)Instantiate(circleTriggers, spawnPosition.position, Quaternion.identity);
+            circleTriggers.GetComponent<FollowTarget>().target = hero.transform;            //    DontDestroyOnLoad(instance);        }        /* else if (instance != this)         {             Destroy(this.gameObject);         }*/    }	// Use this for initialization	void Start () {
         camera.target = hero.transform;
         initialMap = currentMap;	}		// Update is called once per frame	void Update () {
         	}
