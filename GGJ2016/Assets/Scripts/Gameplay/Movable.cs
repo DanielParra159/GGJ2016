@@ -20,7 +20,7 @@ public class Movable : MonoBehaviour {
     [Range(0, 50)]
     public float pushForce;
     [Tooltip("Distancia que queremos que se mueva")]
-    [Range(1, 100)]
+    [Range(0, 100)]
     public float moveDistance;
     protected Vector3 destinationPosition;
 
