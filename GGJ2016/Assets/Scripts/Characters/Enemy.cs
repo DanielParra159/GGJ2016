@@ -45,30 +45,31 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		myTransform.LookAt(target);
 		
 	}
 
 	void FixedUpdate() {
 		nextAttack -= Time.fixedDeltaTime;
 		if (nextAttack < 0.0f) {
-			if (isSeeker) {
-				findTarget ();
-			} else {
-				attackTarget ();
-			}
+			findTarget ();
 		} else {
 			agent.destination = myTransform.position;
 		}
 	}
 
 	void findTarget() {
-		distance = Vector3.Distance (target.position, myTransform.position);
-		if (distance < 1.0f) {
-			Debug.Log ("Hit!");
-			nextAttack = damageTimer;
-			target.GetComponent<Life> ().OnDamage (damage);
-		} else if (distance < 5.0f) {
-			agent.destination = target.position;
+		if (isSeeker) {
+			distance = Vector3.Distance (target.position, myTransform.position);
+			if (distance < 1.0f) {
+				Debug.Log ("Hit!");
+				nextAttack = damageTimer;
+				target.GetComponent<Life> ().OnDamage (damage);
+			} else if (distance < 5.0f) {
+				agent.destination = target.position;
+			}
+		} else {
+			attackTarget ();
 		}
 	}
 
