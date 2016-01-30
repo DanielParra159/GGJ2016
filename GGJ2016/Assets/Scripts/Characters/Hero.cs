@@ -14,9 +14,16 @@ public class Hero : MonoBehaviour {
     [Tooltip("Cadencia disparo, en segundos")]
     [Range(0, 100)]
     public float shootRate = 0.2f;
+    protected float timeToNextShoot;
     [Tooltip("Daño del disparo, por golpe")]
     [Range(1, 100)]
     public float shootDamage = 1;
+
+    [Tooltip("Prefab del disparo")]
+    public GameObject shoot;
+    protected PoolManager shootsPool;
+    [Tooltip("Donde nace el disparo")]
+    public Transform shootSpawn;
 
     protected Transform myTransform;
     protected CharacterController characterController;
@@ -25,11 +32,18 @@ public class Hero : MonoBehaviour {
 
     protected Life life;
 
+    void Awake()
+    {
+        shootsPool = new PoolManager(shoot, 10);
+        shootsPool.Init();
+    }
 	// Use this for initialization
 	void Start () {
         myTransform = transform;
         characterController = gameObject.GetComponent<CharacterController>();
         pausable = new Pausable(onPause, onResume);
+
+        shootsPool.Reset();
 
         life = gameObject.GetComponent<Life>();
         life.registerOnDead(onDead);
@@ -59,6 +73,15 @@ public class Hero : MonoBehaviour {
         {
             shootAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.KeyboardR, GamepadInput.GamePad.Index.One);
         }
+
+        timeToNextShoot -= Time.fixedTime;
+        if (timeToNextShoot < 0.0f && shootAxis != Vector2.zero)
+        {
+            timeToNextShoot = shootRate;
+            GameObject shootAux = shootsPool.getObject(false);
+            shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootAxis, shootDamage);
+        }
+
         if (movAxis != Vector2.zero)
         {
             characterController.Move(new Vector3(movAxis.x, 0.0f, movAxis.y) * Time.fixedTime * movSpeed);
