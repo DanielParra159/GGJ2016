@@ -27,12 +27,15 @@ public class Enemy : MonoBehaviour {
 	float distance;
 	float nextAttack = 0;
 
+	protected Animator animator;
+
 	void Awake()
 	{
 		if (!isSeeker) {
 			shootsPool = new PoolManager (shoot, 10);
 			shootsPool.Init ();
 		}
+		animator = gameObject.GetComponentInChildren<Animator>();
 	}
 
 	// Use this for initialization
@@ -43,6 +46,7 @@ public class Enemy : MonoBehaviour {
 		// Disparos
 		if (!isSeeker) {
 			shootsPool.Reset();
+			agent.Stop ();
 		}
 
         life = gameObject.GetComponent<Life>();
@@ -52,20 +56,91 @@ public class Enemy : MonoBehaviour {
 
     public void Reset()
     {
-        life.init();
+		life.init();
+		animator.SetTrigger("restart");
     }
 	
 	// Update is called once per frame
 	void Update () {
-		myTransform.LookAt(target);
-		
+//		myTransform.LookAt(target);
+
+		animator.SetFloat("speed", agent.velocity.sqrMagnitude);
+
+		if (isSeeker) {
+			if (agent.velocity.x > 0.0f) {
+				animator.SetBool ("right", true);
+				animator.SetBool ("left", false);
+			} else {
+				animator.SetBool ("left", true);
+			}
+
+			if (agent.velocity.z > 0.0f) {
+				animator.SetBool ("up", true);
+			} else {
+				animator.SetBool ("down", true);
+			}
+		} else {
+			float distX = (target.position.x - agent.transform.position.x);
+			float distZ = (target.position.z - agent.transform.position.z);
+			if (distX > 0.0f) {
+				animator.SetBool ("left", false);
+				if (distZ > 0.0f) {
+					animator.SetBool ("down", false);
+					if (distX*distX >= distZ*distZ) {
+						animator.SetBool ("right", true);
+						animator.SetBool ("up", false);
+					} else {
+						animator.SetBool ("up", true);
+						animator.SetBool ("right", false);
+					}
+				} else {
+					animator.SetBool ("up", false);
+					if (distX*distX >= distZ*distZ) {
+						animator.SetBool ("right", true);
+						animator.SetBool ("down", false);
+					} else {
+						animator.SetBool ("down", true);
+						animator.SetBool ("right", false);
+					}
+				}
+			} else {
+				animator.SetBool ("right", false);
+				Debug.Log ("X " + distX*distX + " --  Z " + distZ*distZ);
+				if (distZ > 0.0f) {
+					animator.SetBool ("down", false);
+					if (distX*distX >= distZ*distZ) {
+						animator.SetBool ("left", true);
+						animator.SetBool ("up", false);
+					} else {
+						animator.SetBool ("up", true);
+						animator.SetBool ("left", false);
+					}
+				} else {
+					animator.SetBool ("up", false);
+					if (distX*distX >= distZ*distZ) {
+						animator.SetBool ("left", true);
+						animator.SetBool ("down", false);
+					} else {
+						animator.SetBool ("down", true);
+						animator.SetBool ("left", false);
+					}
+				}
+			}
+			if (distZ > 0.0f) {
+				animator.SetBool ("up", true);
+			} else {
+				animator.SetBool ("down", true);
+			}
+		}
 	}
 
 	void FixedUpdate() {
 		nextAttack -= Time.fixedDeltaTime;
 		if (nextAttack < 0.0f) {
+			animator.SetBool ("attack", true);
 			findTarget ();
 		} else {
+			animator.SetBool ("attack", false);
 			agent.destination = myTransform.position;
 		}
 	}
