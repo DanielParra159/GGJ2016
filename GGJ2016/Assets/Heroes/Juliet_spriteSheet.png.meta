@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ec5c00dc5bc8fc841bc1ef67dc8c529e
-timeCreated: 1454170901
+timeCreated: 1454171671
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -42,6 +42,7 @@ TextureImporter:
     21300070: Juliet_spriteSheet_35
     21300072: Juliet_spriteSheet_36
     21300074: Juliet_spriteSheet_37
+    21300076: Juliet_spriteSheet_38
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -96,7 +97,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_1
@@ -107,7 +108,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_2
@@ -118,7 +119,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_3
@@ -129,7 +130,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_4
@@ -140,7 +141,7 @@ TextureImporter:
         width: 27
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_5
@@ -151,7 +152,7 @@ TextureImporter:
         width: 30
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_6
@@ -162,7 +163,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_7
@@ -173,7 +174,7 @@ TextureImporter:
         width: 22
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_8
@@ -184,7 +185,7 @@ TextureImporter:
         width: 22
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_9
@@ -195,7 +196,7 @@ TextureImporter:
         width: 22
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_10
@@ -206,7 +207,7 @@ TextureImporter:
         width: 26
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_11
@@ -217,7 +218,7 @@ TextureImporter:
         width: 26
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_12
@@ -228,7 +229,7 @@ TextureImporter:
         width: 38
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 11, y: 31.5}
@@ -246,7 +247,7 @@ TextureImporter:
         width: 39
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 19.5, y: -7.5}
@@ -267,7 +268,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_15
@@ -278,7 +279,7 @@ TextureImporter:
         width: 22
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_16
@@ -289,7 +290,7 @@ TextureImporter:
         width: 22
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_17
@@ -300,7 +301,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_18
@@ -311,7 +312,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_19
@@ -322,7 +323,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_20
@@ -333,7 +334,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_21
@@ -344,7 +345,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_22
@@ -355,7 +356,7 @@ TextureImporter:
         width: 25
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_23
@@ -366,7 +367,7 @@ TextureImporter:
         width: 63
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_24
@@ -377,7 +378,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_25
@@ -388,7 +389,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_26
@@ -399,7 +400,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_27
@@ -410,7 +411,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_28
@@ -421,7 +422,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_29
@@ -432,7 +433,7 @@ TextureImporter:
         width: 22
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_30
@@ -443,7 +444,7 @@ TextureImporter:
         width: 22
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_31
@@ -454,7 +455,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_32
@@ -465,7 +466,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_33
@@ -476,7 +477,7 @@ TextureImporter:
         width: 21
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_34
@@ -487,7 +488,7 @@ TextureImporter:
         width: 23
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_35
@@ -498,7 +499,7 @@ TextureImporter:
         width: 22
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_36
@@ -509,7 +510,7 @@ TextureImporter:
         width: 22
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: Juliet_spriteSheet_37
@@ -520,7 +521,18 @@ TextureImporter:
         width: 23
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 938
+        width: 37
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
