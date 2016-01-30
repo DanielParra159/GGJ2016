@@ -15,6 +15,7 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
     {
         currentMovSpeed = movSpeed;
         life.init();
+        animator.SetTrigger("restart");
     }	// Update is called once per frame	void Update () {        if (pausable.Check()) return;    }    void FixedUpdate()    {        if (pausable.Check()) return;
         timeBlocked -= Time.fixedDeltaTime;
         if (timeBlocked > 0.0f) return;        movAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.LeftStick, GamepadInput.GamePad.Index.One);        if (movAxis == Vector2.zero)        {            movAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.KeyboardL, GamepadInput.GamePad.Index.One);        }        Vector2 shootAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.RightStick, GamepadInput.GamePad.Index.One);        if (shootAxis == Vector2.zero)        {            shootAxis = GamepadInput.GamePad.GetAxis(GamepadInput.GamePad.Axis.KeyboardR, GamepadInput.GamePad.Index.One);        }        if (movAxis != Vector2.zero)        {            characterController.Move(new Vector3(movAxis.x, 0.0f, movAxis.y) * Time.fixedDeltaTime * movSpeed);        }        Vector3 lookDir;        if (shootAxis == Vector2.zero)        {            lookDir = (Vector3.right * movAxis.x + Vector3.forward * movAxis.y);
@@ -34,24 +35,7 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
             else if (movAxis.y > 0)
             {
                 animator.SetTrigger("up");
-            }        }        else        {            lookDir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
-            animator.SetTrigger("attack");
-            if (movAxis.x > 0)
-            {
-                animator.SetTrigger("right");
-            }
-            else if (movAxis.x < 0)
-            {
-                animator.SetTrigger("left");
-            }
-            else if (movAxis.y < 0)
-            {
-                animator.SetTrigger("down");
-            }
-            else if (movAxis.y > 0)
-            {
-                animator.SetTrigger("up");
-            }        }        if (lookDir != Vector3.zero)        {
+            }        }        else        {            lookDir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);        }        if (lookDir != Vector3.zero)        {
             //shootSpawn.rotation = Quaternion.LookRotation(lookDir, Vector3.up);            //myTransform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);        }
 
         timeToNextShoot -= Time.fixedDeltaTime;
@@ -73,6 +57,25 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
             GameObject shootAux = shootsPool.getObject(false);
             Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
             shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
+
+
+            animator.SetTrigger("attack");
+            if (shootAxis.x > 0)
+            {
+                animator.SetTrigger("right");
+            }
+            else if (shootAxis.x < 0)
+            {
+                animator.SetTrigger("left");
+            }
+            else if (shootAxis.y < 0)
+            {
+                animator.SetTrigger("down");
+            }
+            else if (shootAxis.y > 0)
+            {
+                animator.SetTrigger("up");
+            }
         }    }
     public void pickItem(Collectable.COLLECTABLES type)
     {
@@ -86,9 +89,11 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, shootSpawn.position);
-    }    public void onDamage(float currentLif)    {            }    public void onDead()    {
+    }    public void onDamage(float currentLif)    {
+        animator.SetTrigger("damage");    }    public void onDead()    {
         //me gustaría hacerlo por eventos, peroooo....
-        GameManager.instance.setState(GameManager.GAME_STATES.STATE_DEATH);    }    public void onPause()    {    }    public void onResume()    {    }    public Vector2 getMovAxis()
+        GameManager.instance.setState(GameManager.GAME_STATES.STATE_DEATH);
+        animator.SetTrigger("dead");    }    public void onPause()    {    }    public void onResume()    {    }    public Vector2 getMovAxis()
     {
         return movAxis;
     }    public void blockHero(float time)
