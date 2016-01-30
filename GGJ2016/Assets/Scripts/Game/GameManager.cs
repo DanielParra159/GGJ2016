@@ -1,6 +1,6 @@
 ﻿using UnityEngine;using System.Collections;public class GameManager : MonoBehaviour {    public static GameManager instance = null;
 
-    private Mapa currentMap;
+    public Mapa currentMap;
     public GameObject hero;
     public Transform spawnPosition;
     public FollowTarget camera;    void Awake()    {        //if (instance == null)        {            instance = this;

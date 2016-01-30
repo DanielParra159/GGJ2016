@@ -10,6 +10,7 @@ public class Shoot : MonoBehaviour {
     [Range(0, 100)]
     public float movSpeed = 0.5f;
 
+    protected Vector3 originPos;
     protected Vector3 direction;
     protected Pausable pausable;
     protected Transform myTransform;
@@ -36,6 +37,7 @@ public class Shoot : MonoBehaviour {
     public void Spawn(Vector3 position, Quaternion rotation, float damage, GameObject owner)
     {
         myTransform.position = position;
+        originPos = position;
 
         myTransform.rotation = rotation;
         this.damage = damage;
@@ -58,6 +60,10 @@ public class Shoot : MonoBehaviour {
             {
                 SoundManager.instance.PlaySingle(m_onCollision);
             }
+        }
+        else  if (collision.gameObject.tag.Equals("ColorWall"))
+        {
+            collision.gameObject.GetComponent<ColorWall>().collision(Vector3.Distance(originPos, collision.transform.position));
         }
         else //enemy || player
         {
