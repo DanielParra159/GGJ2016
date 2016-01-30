@@ -13,12 +13,14 @@ public class Shoot : MonoBehaviour {
     protected Vector3 direction;
     protected Pausable pausable;
     protected Transform myTransform;
+    protected Rigidbody rigidbody;
     protected float damage;
 
     protected GameObject owner;
 	// Use this for initialization
 	void Awake () {
         myTransform = transform;
+        rigidbody = GetComponent<Rigidbody>();
         pausable = new Pausable(onPause, onResume);
 	}
 	
@@ -27,16 +29,21 @@ public class Shoot : MonoBehaviour {
     {
         if (pausable.Check()) return;
 
+        //Debug.Log(myTransform.forward);
         myTransform.Translate(direction * movSpeed);
 	}
 
-    public void Spawn(Vector3 position, Vector3 dir, float damage, GameObject owner)
+    public void Spawn(Vector3 position, Quaternion rotation, float damage, GameObject owner)
     {
         myTransform.position = position;
-        myTransform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+
+        myTransform.rotation = rotation;
         this.damage = damage;
-        direction.x = dir.x;
-        direction.y = dir.y;
+        float angle = rotation.eulerAngles.y  * Mathf.Deg2Rad;
+        //direction = new Vector3(Mathf.Sin(angle), 0.0f, Mathf.Cos(angle)).normalized;
+        rigidbody.velocity = myTransform.transform.forward * movSpeed;
+        //direction = rotation.eulerAngles;
+        Debug.Log(direction);
         gameObject.SetActive(true);
         this.owner = owner;
     }
@@ -44,9 +51,13 @@ public class Shoot : MonoBehaviour {
     void OnCollisionEnter(Collision collision)
     {
         if (owner == collision.gameObject) return;
-        if (collision.gameObject.tag.Equals("Wall") && m_onCollision != null)
+        Debug.Log("Collision");
+        if (collision.gameObject.tag.Equals("Wall"))
         {
-            SoundManager.instance.PlaySingle(m_onCollision);
+            if (m_onCollision != null)
+            {
+                SoundManager.instance.PlaySingle(m_onCollision);
+            }
         }
         else //enemy || player
         {
@@ -57,10 +68,10 @@ public class Shoot : MonoBehaviour {
     }
     public void onPause()
     {
-
+        rigidbody.velocity = Vector3.zero;
     }
     public void onResume()
     {
-
+        rigidbody.velocity = myTransform.transform.forward * movSpeed;
     }
 }
