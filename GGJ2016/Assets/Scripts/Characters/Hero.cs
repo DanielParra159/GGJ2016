@@ -6,9 +6,9 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
     protected List<Collectable.COLLECTABLES> collectable;    protected Transform myTransform;    protected CharacterController characterController;
     protected Animator animator;    protected Pausable pausable;    protected Life life;
 
-    protected Vector2 movAxis;    void Awake()    {        shootsPool = new PoolManager(shoot, 10);        shootsPool.Init();
+    protected Vector2 movAxis;    protected float currentAngle;    void Awake()    {        shootsPool = new PoolManager(shoot, 10);        shootsPool.Init();
 
-        collectable = new List<Collectable.COLLECTABLES>();    }	// Use this for initialization	void Start () {        myTransform = transform;        characterController = gameObject.GetComponent<CharacterController>();
+        collectable = new List<Collectable.COLLECTABLES>();        currentAngle = 0.0f;    }	// Use this for initialization	void Start () {        myTransform = transform;        characterController = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponentInChildren<Animator>();        pausable = new Pausable(onPause, onResume);        shootsPool.Reset();        life = gameObject.GetComponent<Life>();        life.registerOnDead(onDead);        life.registerOnDamage(onDamage);
 
         Reset();	}	public void Reset()
@@ -52,16 +52,28 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
             {
                 animator.SetTrigger("up");
             }        }        if (lookDir != Vector3.zero)        {
-            shootSpawn.rotation = Quaternion.LookRotation(lookDir, Vector3.up);            //myTransform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);        }
+            //shootSpawn.rotation = Quaternion.LookRotation(lookDir, Vector3.up);            //myTransform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);        }
 
         timeToNextShoot -= Time.fixedDeltaTime;
         if (timeToNextShoot < 0.0f && shootAxis != Vector2.zero)
         {
             timeToNextShoot = shootRate;
+            shootSpawn.RotateAround(myTransform.position, Vector3.up, -currentAngle);
+            float shotAngle = Vector3.Angle(lookDir, new Vector3(0f, 0f, 1f));
+            if (lookDir.x == 0f)
+            {
+                shotAngle *= lookDir.z;
+            }
+            else
+            {
+                shotAngle *= lookDir.x;
+            }
+            currentAngle = shotAngle;
+            shootSpawn.RotateAround(myTransform.position, Vector3.up, shotAngle);
             GameObject shootAux = shootsPool.getObject(false);
             Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
             shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
-        }    }
+        }    }
     public void pickItem(Collectable.COLLECTABLES type)
     {
         collectable.Add(type);
