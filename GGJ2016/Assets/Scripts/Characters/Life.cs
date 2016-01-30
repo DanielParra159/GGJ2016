@@ -16,14 +16,10 @@ public class Life : MonoBehaviour
     [Range(0, 1000)]
     public float m_regeneration= 0.0f;
     [Tooltip("Regeneración por segundo")]
-    [Range(1, 100)]
-    public float m_yPositionOfDamageMessage = 1.0f;
 
     public AudioClip m_onDamageSound;
     public AudioClip m_onDeadSound;
 
-    [Tooltip("Slider donde se mostrara la vida")]
-    public Slider m_slider;
 
     private NotifyOnDead m_onDead = null;
     private NotifyOnDamage m_onDamage = null;
@@ -34,17 +30,11 @@ public class Life : MonoBehaviour
     void Start()
     {
         init();
-        m_slider.transform.parent.transform.parent = null;
         m_pausable = new Pausable();
     }
     public void init()
     {
         m_currentLife = m_maxLife;
-        if (m_slider)
-        {
-            m_slider.maxValue = m_maxLife;
-            m_slider.value = m_currentLife;
-        }
     }
 
     // Update is called once per frame
@@ -57,18 +47,12 @@ public class Life : MonoBehaviour
             m_currentLife = m_maxLife;
             //this.enabled = false;
         }
-        if (m_slider)
-        {
-            m_slider.transform.parent.position = gameObject.transform.position + Vector3.forward * 1.0f;
-            m_slider.value = m_currentLife;
-        }
     }
     public bool OnDamage(float damage)
     {
         bool dead = false;
         this.enabled = true;
         m_currentLife -= damage;
-        Vector3 offset = new Vector3(Random.Range(1.0f, 3.0f), m_yPositionOfDamageMessage, Random.Range(1.0f, 3.0f));
         if (m_currentLife <= 0.0f)
         {
             if (m_onDead != null)
@@ -88,11 +72,6 @@ public class Life : MonoBehaviour
                 SoundManager.instance.PlaySingle(m_onDamageSound);
             }
             m_onDamage(m_currentLife);
-        }
-
-        if (m_slider)
-        {
-            m_slider.value = m_currentLife;
         }
 
         return dead;
@@ -135,21 +114,9 @@ public class Life : MonoBehaviour
     {
         m_onDamage -= onDamage;
     }
-    public void showSlider()
-    {
-        m_slider.enabled = true;
-    }
-    public void hideSlider()
-    {
-        m_slider.enabled = false;
-    }
 
     public void setRegeneration(float regeneration)
     {
         m_regeneration = regeneration;
-    }
-    public void SetActive(bool active)
-    {
-        m_slider.gameObject.SetActive(active);
     }
 }

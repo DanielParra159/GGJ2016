@@ -25,7 +25,7 @@ public class PoolManager {
 		for ( int i = 0; i < m_poolAmount; i++ )
 		{
 			m_poolList.Add( GameObject.Instantiate(m_goPool) );
-            m_poolList[i].SetActive(false);
+            //m_poolList[i].SetActive(false);
 		}
 	}
 
