@@ -5,6 +5,9 @@ using System.IO;
 
 public class Mapa : MonoBehaviour {
 
+	string fileName;
+	int[,] matrix;
+
 	// Use this for initialization
 	void Start () {
 		
