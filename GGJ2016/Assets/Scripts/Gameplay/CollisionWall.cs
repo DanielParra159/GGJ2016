@@ -8,6 +8,8 @@ public class CollisionWall : MonoBehaviour {
     public Color correctColor = Color.green;
     public Color normalColor = Color.white;
 
+    public AudioClip m_onCollision;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -29,6 +31,10 @@ public class CollisionWall : MonoBehaviour {
         if (parent.onEnter(this.gameObject))
         {
             gameObject.GetComponent<Renderer>().material.color = correctColor;
+            if (m_onCollision != null)
+            {
+                SoundManager.instance.PlaySingle(m_onCollision);
+            }
         }
     }
 }

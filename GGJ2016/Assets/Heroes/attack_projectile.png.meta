@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e3ec49cdc9d2da84c81223445f4dfca8
-timeCreated: 1454148019
+timeCreated: 1454170539
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -61,21 +61,10 @@ TextureImporter:
         serializedVersion: 2
         x: 4
         y: 36
-        width: 10
+        width: 25
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: attack_projectile_1
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 36
-        width: 11
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: attack_projectile_2
@@ -83,21 +72,10 @@ TextureImporter:
         serializedVersion: 2
         x: 4
         y: 17
-        width: 10
+        width: 25
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: attack_projectile_3
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 17
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: attack_projectile_4
@@ -105,21 +83,10 @@ TextureImporter:
         serializedVersion: 2
         x: 4
         y: 3
-        width: 10
+        width: 25
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: attack_projectile_5
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 3
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []

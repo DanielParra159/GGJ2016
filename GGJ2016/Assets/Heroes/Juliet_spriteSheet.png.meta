@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ec5c00dc5bc8fc841bc1ef67dc8c529e
-timeCreated: 1454124216
+timeCreated: 1454170901
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -26,6 +26,22 @@ TextureImporter:
     21300038: Juliet_spriteSheet_19
     21300040: Juliet_spriteSheet_20
     21300042: Juliet_spriteSheet_21
+    21300044: Juliet_spriteSheet_22
+    21300046: Juliet_spriteSheet_23
+    21300048: Juliet_spriteSheet_24
+    21300050: Juliet_spriteSheet_25
+    21300052: Juliet_spriteSheet_26
+    21300054: Juliet_spriteSheet_27
+    21300056: Juliet_spriteSheet_28
+    21300058: Juliet_spriteSheet_29
+    21300060: Juliet_spriteSheet_30
+    21300062: Juliet_spriteSheet_31
+    21300064: Juliet_spriteSheet_32
+    21300066: Juliet_spriteSheet_33
+    21300068: Juliet_spriteSheet_34
+    21300070: Juliet_spriteSheet_35
+    21300072: Juliet_spriteSheet_36
+    21300074: Juliet_spriteSheet_37
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -76,7 +92,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 556
+        y: 984
         width: 21
         height: 63
       alignment: 0
@@ -87,7 +103,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 485
+        y: 913
         width: 21
         height: 63
       alignment: 0
@@ -98,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 406
+        y: 834
         width: 21
         height: 63
       alignment: 0
@@ -109,7 +125,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 331
+        y: 759
         width: 21
         height: 63
       alignment: 0
@@ -120,7 +136,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 55
-        y: 331
+        y: 759
         width: 27
         height: 63
       alignment: 0
@@ -131,7 +147,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 91
-        y: 331
+        y: 759
         width: 30
         height: 63
       alignment: 0
@@ -142,7 +158,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 248
+        y: 676
         width: 21
         height: 63
       alignment: 0
@@ -153,7 +169,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 57
-        y: 248
+        y: 676
         width: 22
         height: 63
       alignment: 0
@@ -164,7 +180,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 171
+        y: 599
         width: 22
         height: 63
       alignment: 0
@@ -175,7 +191,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 57
-        y: 171
+        y: 599
         width: 22
         height: 63
       alignment: 0
@@ -186,7 +202,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 95
-        y: 171
+        y: 599
         width: 26
         height: 63
       alignment: 0
@@ -197,7 +213,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 139
-        y: 171
+        y: 599
         width: 26
         height: 63
       alignment: 0
@@ -208,7 +224,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 181
-        y: 171
+        y: 599
         width: 38
         height: 63
       alignment: 0
@@ -226,7 +242,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 232
-        y: 171
+        y: 599
         width: 39
         height: 63
       alignment: 0
@@ -247,7 +263,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 20
-        y: 92
+        y: 520
         width: 21
         height: 63
       alignment: 0
@@ -258,7 +274,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 59
-        y: 92
+        y: 520
         width: 22
         height: 64
       alignment: 0
@@ -269,7 +285,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 94
-        y: 92
+        y: 520
         width: 22
         height: 64
       alignment: 0
@@ -280,7 +296,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 18
-        y: 14
+        y: 442
         width: 21
         height: 63
       alignment: 0
@@ -291,7 +307,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 59
-        y: 14
+        y: 442
         width: 21
         height: 63
       alignment: 0
@@ -302,7 +318,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 98
-        y: 14
+        y: 442
         width: 21
         height: 63
       alignment: 0
@@ -313,7 +329,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 142
-        y: 14
+        y: 442
         width: 21
         height: 63
       alignment: 0
@@ -324,8 +340,184 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 185
-        y: 14
+        y: 442
         width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 350
+        width: 25
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 350
+        width: 63
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 260
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 260
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 260
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 178
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 178
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 178
+        width: 22
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 178
+        width: 22
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 97
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 97
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 97
+        width: 21
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 18
+        width: 23
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 18
+        width: 22
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 18
+        width: 22
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Juliet_spriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 18
+        width: 23
         height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
