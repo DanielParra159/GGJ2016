@@ -11,6 +11,8 @@ public class ColorWall : MonoBehaviour {
     }
     public ColorRange [] ranges;
 
+    protected Color currentColor;
+
     protected Renderer renderer;
 
 	// Use this for initialization
@@ -30,8 +32,14 @@ public class ColorWall : MonoBehaviour {
             if (distance < ranges[i].distance )
             {
                 renderer.material.color = ranges[i].color;
+                currentColor = ranges[i].color;
                 break;
             }
         }
+    }
+
+    public Color getColor()
+    {
+        return currentColor;
     }
 }
