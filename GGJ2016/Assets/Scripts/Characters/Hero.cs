@@ -21,7 +21,7 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
         timeToNextShoot -= Time.fixedDeltaTime;
         if (timeToNextShoot < 0.0f && shootAxis != Vector2.zero)
         {
-			timeToNextShoot = shootRate;			shootSpawn.RotateAround (myTransform.position, Vector3.up, -currentAngle);			float shotAngle = Vector3.Angle (lookDir, new Vector3 (0f, 0f, 1f));			if (lookDir.x == 0f) {				shotAngle *= lookDir.z;			} else {				shotAngle *= lookDir.x;			}			currentAngle = shotAngle;			Debug.Log ("lookDir.x " + lookDir.x + " myAngle " + shotAngle + " currentAngle " + currentAngle);			shootSpawn.RotateAround (myTransform.position, Vector3.up, shotAngle);
+			timeToNextShoot = shootRate;			shootSpawn.RotateAround (myTransform.position, Vector3.up, -currentAngle);			float shotAngle = Vector3.Angle (lookDir, new Vector3 (0f, 0f, 1f));			if (lookDir.x == 0f) {				shotAngle *= lookDir.z;			} else {				shotAngle *= lookDir.x;			}			currentAngle = shotAngle;			shootSpawn.RotateAround (myTransform.position, Vector3.up, shotAngle);
             GameObject shootAux = shootsPool.getObject(false);
             Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
             shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
