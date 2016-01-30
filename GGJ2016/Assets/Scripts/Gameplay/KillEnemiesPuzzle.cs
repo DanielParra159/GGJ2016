@@ -31,7 +31,7 @@ public class KillEnemiesPuzzle : MonoBehaviour {
         {
             for (int i = 0; i < enemies.Length; ++i)
             {
-                //enemies[i].Reset();
+                enemies[i].Reset();
             }
         }
         firstTime = false;

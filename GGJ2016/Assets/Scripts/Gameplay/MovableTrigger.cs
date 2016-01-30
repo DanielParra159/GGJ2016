@@ -72,6 +72,7 @@ public class MovableTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        currentTimePushing = 0.0f;
         movableParent.onExit(dir);
     }
 }

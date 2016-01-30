@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Door : MonoBehaviour {
 
     [Tooltip("Llave que necesita")]
@@ -9,10 +10,15 @@ public class Door : MonoBehaviour {
     [Tooltip("Esta abierta?")]
     public bool opened;
 
+    protected BoxCollider collider;
     public bool chronometer;
     public float chronometerTime = 10.0f;
     protected float currentChronometerTime = 10.0f;
 
+    void Start()
+    {
+        collider = gameObject.GetComponent<BoxCollider>();
+    }
 	// Use this for initialization
     void OnEnable()
     {
@@ -38,10 +44,12 @@ public class Door : MonoBehaviour {
     public void open()
     {
         opened = true;
+        collider.enabled = false;
     }
     public void close()
     {
         opened = false;
+        collider.enabled = true;
     }
 
     void OnTriggerEnter(Collider other)

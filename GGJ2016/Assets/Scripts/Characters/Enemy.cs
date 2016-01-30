@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Life))]
 public class Enemy : MonoBehaviour {
 
 	[Tooltip("Daño que hace este enemigo")]
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour {
 	public Transform shootSpawn;
 	[Tooltip("Daño del disparo, por golpe")]
 	public float shootDamage;
+
+    protected Life life;
 
 	Transform target;
 	Transform myTransform;
@@ -41,7 +44,16 @@ public class Enemy : MonoBehaviour {
 		if (!isSeeker) {
 			shootsPool.Reset();
 		}
+
+        life = gameObject.GetComponent<Life>();
+        life.registerOnDead(onDead);
+        life.registerOnDamage(onDamage);
 	}
+
+    public void Reset()
+    {
+        life.init();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -81,4 +93,12 @@ public class Enemy : MonoBehaviour {
 		GameObject shootAux = shootsPool.getObject(false);
 		shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
 	}
+    public void onDamage(float currentLif)
+    {
+
+    }
+    public void onDead()
+    {
+        gameObject.SetActive(false);
+    }
 }

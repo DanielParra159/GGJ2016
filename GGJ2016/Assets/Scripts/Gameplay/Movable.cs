@@ -29,14 +29,21 @@ public class Movable : MonoBehaviour {
     public float heroTimeBlocked = 0.5f;
 
     protected Rigidbody rigidbody;
+    protected Vector3 originPos;
 
     bool moving = false;
 
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody>();
+        originPos = transform.position;
 	}
-	
+
+    void OnEnable()
+    {
+        originPos = transform.position;
+    }
+
 	// Update is called once per frame
 	void Update () {
 	    if (moving && Vector3.Distance(destinationPosition, transform.position) < 0.01f)
