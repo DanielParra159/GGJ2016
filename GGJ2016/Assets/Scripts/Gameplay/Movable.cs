@@ -41,7 +41,7 @@ public class Movable : MonoBehaviour {
 
     void OnEnable()
     {
-        originPos = transform.position;
+        transform.position = originPos;
     }
 
 	// Update is called once per frame
