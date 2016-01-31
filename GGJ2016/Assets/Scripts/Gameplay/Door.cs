@@ -24,12 +24,14 @@ public class Door : MonoBehaviour {
         gameObject.GetComponent<Animator>().SetBool("Open",opened);
 
         if (opened){
-            gameObject.GetComponent<Animator>().Play("AlreadyOpen");
+            gameObject.GetComponent<Animator>().Play("AlreadyOpenHor");
+            gameObject.GetComponent<Animator>().Play("AlreadyOpenVer");
                 
         }
         else
         {
-            gameObject.GetComponent<Animator>().Play("AlreadyClose");
+            gameObject.GetComponent<Animator>().Play("AlreadyCloseHor");
+            gameObject.GetComponent<Animator>().Play("AlreadyCloseVer");
 
         }
 
@@ -38,6 +40,20 @@ public class Door : MonoBehaviour {
 	// Use this for initialization
     void OnEnable()
     {
+        gameObject.GetComponent<Animator>().SetBool("Open", opened);
+
+        if (opened)
+        {
+            gameObject.GetComponent<Animator>().Play("AlreadyOpenHor");
+            gameObject.GetComponent<Animator>().Play("AlreadyOpenVer");
+
+        }
+        else
+        {
+            gameObject.GetComponent<Animator>().Play("AlreadyCloseHor");
+            gameObject.GetComponent<Animator>().Play("AlreadyCloseVer");
+
+        }
         if (chronometer)
         {
             this.open();
@@ -61,7 +77,8 @@ public class Door : MonoBehaviour {
     {
         opened = true;
         collider.enabled = false;
-        gameObject.GetComponent<Animator>().Play("OpenDoor");
+        gameObject.GetComponent<Animator>().Play("OpenDoorVer");
+        gameObject.GetComponent<Animator>().Play("OpenDoorHor");
         gameObject.GetComponent<Animator>().SetBool("Open",true);
         if (m_onOpen != null)
         {
@@ -72,7 +89,8 @@ public class Door : MonoBehaviour {
     {
         opened = false;
         collider.enabled = true;
-        gameObject.GetComponent<Animator>().Play("CloseDoor");
+        gameObject.GetComponent<Animator>().Play("CloseDoorHor");
+        gameObject.GetComponent<Animator>().Play("CloseDoorVer");
         gameObject.GetComponent<Animator>().SetBool("Open", false);
 
 
