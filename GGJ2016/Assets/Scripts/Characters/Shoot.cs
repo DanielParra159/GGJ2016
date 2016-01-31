@@ -41,7 +41,7 @@ public class Shoot : MonoBehaviour {
 
         myTransform.rotation = rotation;
         this.damage = damage;
-        float angle = rotation.eulerAngles.y  * Mathf.Deg2Rad;
+        //float angle = rotation.eulerAngles.y  * Mathf.Deg2Rad;
         //direction = new Vector3(Mathf.Sin(angle), 0.0f, Mathf.Cos(angle)).normalized;
         rigidbody.velocity = myTransform.transform.forward * movSpeed;
         //direction = rotation.eulerAngles;
@@ -76,6 +76,15 @@ public class Shoot : MonoBehaviour {
         }
 
         gameObject.SetActive(false);
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (owner == other.gameObject) return;
+        {
+            Life life = other.gameObject.GetComponent<Life>();
+            if (life == null) return;
+            other.gameObject.GetComponent<Life>().OnDamage(damage);
+        }
     }
     public void onPause()
     {

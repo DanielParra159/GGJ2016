@@ -48,11 +48,29 @@ public class Boss : MonoBehaviour {
         if (!unit) return;
         Vector3 dir = hero.transform.position - myTransform.position;
         dir.Normalize();
-        Vector3 lookDir = (Vector3.right * dir.x + Vector3.forward * dir.y);
+        dir.y = 0.0f;
+        Vector3 lookDir = (Vector3.right * dir.x + Vector3.forward * dir.z);
 
 	    timeToNextShoot -= Time.fixedDeltaTime;
         if (timeToNextShoot < 0.0f)
         {
+            /*Vector3 targetDir = hero.transform.position - myTransform.position;
+            // Devolvemos el spawn a su sitio inicial
+            shootSpawn.RotateAround(myTransform.position, Vector3.up, -currentAngle);
+            float shotAngle = Vector3.Angle(myTransform.forward, targetDir);
+            Debug.Log("shotAngle " + shotAngle);
+            if (targetDir.x < 0f)
+            {
+                shotAngle *= -1;
+            }
+            currentAngle = shotAngle;
+            shootSpawn.RotateAround(myTransform.position, Vector3.up, shotAngle);
+            GameObject shootAux = shootsPool.getObject(false);
+            shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
+            */
+
+
+            
             timeToNextShoot = shootRate;
             shootSpawn.RotateAround(myTransform.position, Vector3.up, -currentAngle);
             float shotAngle = Vector3.Angle(lookDir, new Vector3(0f, 0f, 1f));
@@ -68,7 +86,7 @@ public class Boss : MonoBehaviour {
             shootSpawn.RotateAround(myTransform.position, Vector3.up, shotAngle);
             GameObject shootAux = shootsPool.getObject(false);
             //            Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
-            shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
+            shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, Quaternion.FromToRotation(Vector3.right, dir), shootDamage, this.gameObject);
         }
 	}
 
