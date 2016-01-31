@@ -61,7 +61,7 @@ public class Door : MonoBehaviour {
         }
         collider = gameObject.GetComponent<BoxCollider>();
 
-        gameObject.GetComponent<Animator>().SetBool("Open", opened);
+        //gameObject.GetComponent<Animator>().SetBool("Open", opened);
 
         if (opened)
         {
