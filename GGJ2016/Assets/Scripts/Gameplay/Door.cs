@@ -15,24 +15,37 @@ public class Door : MonoBehaviour {
     public float chronometerTime = 10.0f;
     protected float currentChronometerTime = 10.0f;
 
+    private bool isInverted = false;
+
     public AudioClip m_onOpen;
     public AudioClip m_onClose;
 
     void Start()
     {
+
+
+        if(isInverted)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
         collider = gameObject.GetComponent<BoxCollider>();
         gameObject.GetComponent<Animator>().SetBool("Open",opened);
 
         if (opened){
             gameObject.GetComponent<Animator>().Play("AlreadyOpenHor");
             gameObject.GetComponent<Animator>().Play("AlreadyOpenVer");
+            collider.enabled = false;
+
                 
         }
         else
         {
             gameObject.GetComponent<Animator>().Play("AlreadyCloseHor");
             gameObject.GetComponent<Animator>().Play("AlreadyCloseVer");
-
+            collider.enabled = true;
+            
         }
 
         
@@ -40,18 +53,28 @@ public class Door : MonoBehaviour {
 	// Use this for initialization
     void OnEnable()
     {
+        if (isInverted)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+        collider = gameObject.GetComponent<BoxCollider>();
+
         gameObject.GetComponent<Animator>().SetBool("Open", opened);
 
         if (opened)
         {
             gameObject.GetComponent<Animator>().Play("AlreadyOpenHor");
             gameObject.GetComponent<Animator>().Play("AlreadyOpenVer");
+            collider.enabled = false;
 
         }
         else
         {
             gameObject.GetComponent<Animator>().Play("AlreadyCloseHor");
             gameObject.GetComponent<Animator>().Play("AlreadyCloseVer");
+            collider.enabled = true;
 
         }
         if (chronometer)
@@ -79,7 +102,7 @@ public class Door : MonoBehaviour {
         collider.enabled = false;
         gameObject.GetComponent<Animator>().Play("OpenDoorVer");
         gameObject.GetComponent<Animator>().Play("OpenDoorHor");
-        gameObject.GetComponent<Animator>().SetBool("Open",true);
+       // gameObject.GetComponent<Animator>().SetBool("Open",true);
         if (m_onOpen != null)
         {
             SoundManager.instance.PlaySingle(m_onOpen);
@@ -91,7 +114,7 @@ public class Door : MonoBehaviour {
         collider.enabled = true;
         gameObject.GetComponent<Animator>().Play("CloseDoorHor");
         gameObject.GetComponent<Animator>().Play("CloseDoorVer");
-        gameObject.GetComponent<Animator>().SetBool("Open", false);
+        //gameObject.GetComponent<Animator>().SetBool("Open", false);
 
 
         if (m_onClose != null)

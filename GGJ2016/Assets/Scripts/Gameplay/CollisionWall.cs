@@ -17,7 +17,7 @@ public class CollisionWall : MonoBehaviour {
 	
     public void Reset()
     {
-        gameObject.GetComponent<Renderer>().material.color = normalColor;
+        gameObject.transform.Find("Sprite").GetComponent<Renderer>().material.color = normalColor;
     }
 
 	// Update is called once per frame
@@ -30,7 +30,7 @@ public class CollisionWall : MonoBehaviour {
         if (!this.enabled) return;
         if (parent.onEnter(this.gameObject))
         {
-            gameObject.GetComponent<Renderer>().material.color = correctColor;
+            gameObject.transform.Find("Sprite").GetComponent<Renderer>().material.color = correctColor;
             if (m_onCollision != null)
             {
                 SoundManager.instance.PlaySingle(m_onCollision);

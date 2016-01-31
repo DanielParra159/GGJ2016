@@ -5,6 +5,7 @@ public class MovablePuzzle : MonoBehaviour {
 
     public int triggerNeeded = 2;
     private int currentTriggersActived = 0;
+    
 
     public Door[] doorsToOpen;
 
