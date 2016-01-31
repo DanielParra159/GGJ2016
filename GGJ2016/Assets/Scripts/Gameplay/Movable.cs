@@ -30,7 +30,7 @@ public class Movable : MonoBehaviour {
 
     protected Rigidbody rigidbody;
     protected Vector3 originPos;
-    protected bool firstTime;
+    protected bool firstTime = true;
 
     bool moving = false;
 
@@ -44,6 +44,7 @@ public class Movable : MonoBehaviour {
     {
         if (!firstTime)
             transform.position = originPos;
+        moving = false;
     }
 
 	// Update is called once per frame
