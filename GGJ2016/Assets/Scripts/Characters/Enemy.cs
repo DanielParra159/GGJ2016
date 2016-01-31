@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour {
 			shootsPool.Reset ();
 			agent.Stop ();
 		} else {
-			agent.updatePosition = true;
+//			agent.updatePosition = true;
 			agent.updateRotation = false;
 		}
 
@@ -132,16 +132,22 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void findTarget() {
+		Vector3 newTarget = new Vector3 (target.position.x, myTransform.position.y, target.position.z);
+		distance = Vector3.Distance (newTarget, myTransform.position);
+		
 		if (isSeeker) {
-			distance = Vector3.Distance (target.position, myTransform.position);
-			if (distance < 1.0f) {
+			if (distance < 0.5f) {
 				nextAttack = damageTimer;
 				target.GetComponent<Life> ().OnDamage (damage);
 			} else if (distance < 5.0f) {
-				agent.destination = target.position;
+				agent.destination = newTarget;
+			} else {
+				agent.destination = myTransform.position;
 			}
 		} else {
-			attackTarget ();
+			if (distance < 5.0f) {
+				attackTarget ();
+			}
 		}
 	}
 
