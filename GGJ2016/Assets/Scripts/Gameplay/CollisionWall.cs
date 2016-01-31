@@ -9,6 +9,7 @@ public class CollisionWall : MonoBehaviour {
     public Color normalColor = Color.white;
 
     public AudioClip m_onCollision;
+    public AudioClip m_onWrong;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,10 @@ public class CollisionWall : MonoBehaviour {
             {
                 SoundManager.instance.PlaySingle(m_onCollision);
             }
+        }
+        else if (m_onWrong != null)
+        {
+            SoundManager.instance.PlaySingle(m_onWrong);
         }
     }
 }

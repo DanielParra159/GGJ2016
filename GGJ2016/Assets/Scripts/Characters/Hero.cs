@@ -1,5 +1,6 @@
 ﻿using UnityEngine;using System.Collections;
-using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireComponent(typeof(CharacterController))]public class Hero : MonoBehaviour {    [Tooltip("Velocidad de movimiento")]    [Range(0, 100)]    public float movSpeed = 10;    protected float currentMovSpeed = 10;    [Tooltip("Cadencia disparo, en segundos")]    [Range(0, 100)]    public float shootRate = 0.2f;    protected float timeToNextShoot;    [Tooltip("Daño del disparo, por golpe")]    [Range(1, 100)]    public float shootDamage = 1;    [Tooltip("Prefab del disparo")]    public GameObject shoot;    protected PoolManager shootsPool;    [Tooltip("Donde nace el disparo")]    public Transform shootSpawn;
+using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireComponent(typeof(CharacterController))]public class Hero : MonoBehaviour {    [Tooltip("Velocidad de movimiento")]    [Range(0, 100)]    public float movSpeed = 10;    protected float currentMovSpeed = 10;    [Tooltip("Cadencia disparo, en segundos")]    [Range(0, 100)]    public float shootRate = 0.2f;    protected float timeToNextShoot;    [Tooltip("Daño del disparo, por golpe")]    [Range(1, 100)]    public float shootDamage = 1;
+    public AudioClip m_onShoot;    [Tooltip("Prefab del disparo")]    public GameObject shoot;    protected PoolManager shootsPool;    [Tooltip("Donde nace el disparo")]    public Transform shootSpawn;
 
     protected float timeBlocked;
 
@@ -47,6 +48,10 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
 //            Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
             shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
 
+            if (m_onShoot != null)
+            {
+                SoundManager.instance.PlaySingle(m_onShoot);
+            }
 
             animator.SetBool("attack", true);
         }    }
