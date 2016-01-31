@@ -49,4 +49,15 @@ public class SoundManager : MonoBehaviour
         }
         return false;
     }
+
+    public bool SetMusic(AudioClip clip)
+    {
+        if (gameObject.GetComponent<AudioSource>() != null)
+        {
+            gameObject.GetComponent<AudioSource>().clip = clip;
+            gameObject.GetComponent<AudioSource>().Play();
+            return true;
+        }
+        return false;
+    }
 }

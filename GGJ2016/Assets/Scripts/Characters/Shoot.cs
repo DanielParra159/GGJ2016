@@ -84,6 +84,7 @@ public class Shoot : MonoBehaviour {
             Life life = other.gameObject.GetComponent<Life>();
             if (life == null) return;
             other.gameObject.GetComponent<Life>().OnDamage(damage);
+            gameObject.SetActive(false);
         }
     }
     public void onPause()

@@ -24,6 +24,7 @@ public class Boss : MonoBehaviour {
     protected GameObject hero;
     protected bool unit = false;
 
+    public AudioClip m_onAttack;
     public GameObject shield;
 
     protected Animator animator;
@@ -54,6 +55,15 @@ public class Boss : MonoBehaviour {
         dir.Normalize();
         dir.y = 0.0f;
         Vector3 lookDir = (Vector3.right * dir.x + Vector3.forward * dir.z);
+
+        if (dir.x >= 0.0f)
+        {
+            animator.SetBool("horizontal", true);
+        }
+        else
+        {
+            animator.SetBool("horizontal", false);
+        }
 
 	    timeToNextShoot -= Time.fixedDeltaTime;
         if (timeToNextShoot < 0.0f)
@@ -92,6 +102,11 @@ public class Boss : MonoBehaviour {
             GameObject shootAux = shootsPool.getObject(false);
             //            Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
             shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
+            
+            if (m_onAttack != null)
+            {
+                SoundManager.instance.PlaySingle(m_onAttack);
+            }
             animator.SetTrigger("attack");
         }
 	}

@@ -16,6 +16,8 @@ public class HasObjects : MonoBehaviour {
     public GameObject Play;
     public GameObject Pocion;
 
+    public AudioClip bossMusic; 
+
 
 
     void OnTriggerEnter(Collider other)
@@ -53,6 +55,10 @@ public class HasObjects : MonoBehaviour {
         if(ObjectsDelivered == 4)
         {
             Destroy(gameObject);
+            if (bossMusic != null)
+            {
+                SoundManager.instance.SetMusic(bossMusic);
+            }
         }
 
     }
