@@ -28,6 +28,7 @@ public class Boss : MonoBehaviour {
     public GameObject shield;
 
     protected Animator animator;
+    protected bool dead = false;
 
     void Awake()
     {
@@ -50,7 +51,7 @@ public class Boss : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!unit) return;
+        if (!unit || dead) return;
         Vector3 dir = hero.transform.position - shootSpawn.position;
         dir.Normalize();
         dir.y = 0.0f;
@@ -117,6 +118,7 @@ public class Boss : MonoBehaviour {
     }
     public void onDead()
     {
+        dead = true;
         animator.SetTrigger("death");
     }
 }
