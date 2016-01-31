@@ -24,10 +24,12 @@ public class RoomLoader : MonoBehaviour {
         if (changeCheckPoint)
         {
             GameManager.instance.spawnPosition = playerSpawn;
+            GameManager.instance.initialMap = mapToLoad.GetComponent<Mapa>();
         }
         else if (resetCheckPoint)
         {
             GameManager.instance.spawnPosition = GameManager.instance.origPosition;
+            GameManager.instance.initialMap = GameManager.instance.origMap;
         }
         if (m_onLoad != null)
         {

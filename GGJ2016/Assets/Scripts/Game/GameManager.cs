@@ -6,8 +6,11 @@
     }
     public GameObject circleTriggers;
     protected GAME_STATES currentState;
+    [HideInInspector]
     public Mapa currentMap;
-    protected Mapa initialMap;
+    [HideInInspector]
+    public Mapa initialMap;
+    public Mapa origMap;
     public GameObject hero;
     public Transform spawnPosition;
     [HideInInspector]
