@@ -21,6 +21,19 @@ public class Door : MonoBehaviour {
     void Start()
     {
         collider = gameObject.GetComponent<BoxCollider>();
+        gameObject.GetComponent<Animator>().SetBool("Open",opened);
+
+        if (opened){
+            gameObject.GetComponent<Animator>().Play("AlreadyOpen");
+                
+        }
+        else
+        {
+            gameObject.GetComponent<Animator>().Play("AlreadyClose");
+
+        }
+
+        
     }
 	// Use this for initialization
     void OnEnable()
@@ -48,6 +61,8 @@ public class Door : MonoBehaviour {
     {
         opened = true;
         collider.enabled = false;
+        gameObject.GetComponent<Animator>().Play("OpenDoor");
+        gameObject.GetComponent<Animator>().SetBool("Open",true);
         if (m_onOpen != null)
         {
             SoundManager.instance.PlaySingle(m_onOpen);
@@ -57,6 +72,10 @@ public class Door : MonoBehaviour {
     {
         opened = false;
         collider.enabled = true;
+        gameObject.GetComponent<Animator>().Play("CloseDoor");
+        gameObject.GetComponent<Animator>().SetBool("Open", false);
+
+
         if (m_onClose != null)
         {
             SoundManager.instance.PlaySingle(m_onClose);
