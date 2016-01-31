@@ -11,6 +11,7 @@ public class pickUpObject : MonoBehaviour {
         {
             print("pickup");
             other.gameObject.GetComponent<Objects>().addObject(objectName);
+          
             Destroy(gameObject);
         }
     }
