@@ -10,8 +10,11 @@
     protected Mapa initialMap;
     public GameObject hero;
     public Transform spawnPosition;
+    [HideInInspector]
+    public Transform origPosition;
     public FollowTarget camera;    void Awake()    {        //if (instance == null)        {            instance = this;
             hero = (GameObject)Instantiate(hero, spawnPosition.position, Quaternion.identity);
+            origPosition = spawnPosition;
             circleTriggers = (GameObject)Instantiate(circleTriggers, spawnPosition.position, Quaternion.identity);
             circleTriggers.GetComponent<FollowTarget>().target = hero.transform;            //    DontDestroyOnLoad(instance);        }        /* else if (instance != this)         {             Destroy(this.gameObject);         }*/    }	// Use this for initialization	void Start () {
         camera.target = hero.transform;
