@@ -20,6 +20,8 @@ public class Life : MonoBehaviour
     public AudioClip m_onDamageSound;
     public AudioClip m_onDeadSound;
 
+    public bool hasShield = false;
+
 
     private NotifyOnDead m_onDead = null;
     private NotifyOnDamage m_onDamage = null;
@@ -50,6 +52,7 @@ public class Life : MonoBehaviour
     }
     public bool OnDamage(float damage)
     {
+        if (hasShield) return false;
         bool dead = false;
         this.enabled = true;
         m_currentLife -= damage;

@@ -4,7 +4,7 @@ using System.Collections;
 public class MovablePuzzle : MonoBehaviour {
 
     public int triggerNeeded = 2;
-    private int currentTriggersActived = 0;
+    protected int currentTriggersActived = 0;
 
     private bool solved = false;
     
@@ -20,18 +20,20 @@ public class MovablePuzzle : MonoBehaviour {
 	
 	}
 
+    public void complete()
+    {
+        for (int i = 0; i < doorsToOpen.Length; ++i)
+        {
+            doorsToOpen[i].open();
+        }
+        gameObject.SetActive(false);
+    }
     public void activeTrigger()
     {
         if (++currentTriggersActived == triggerNeeded)
         {
             //completado
-            for (int i = 0; i < doorsToOpen.Length; ++i)
-            {
-                doorsToOpen[i].open();
-            }
-            gameObject.SetActive(false);
+            complete();
         }
-        
-
     }
 }
