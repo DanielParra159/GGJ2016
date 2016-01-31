@@ -8,6 +8,9 @@ public class RoomLoader : MonoBehaviour {
     [Tooltip("Mapa que tiene que cargar")]
     public GameObject mapToLoad;
 
+    public bool changeCheckPoint = false;
+    public bool resetCheckPoint = true;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -16,5 +19,13 @@ public class RoomLoader : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         GameManager.instance.changeMap(mapToLoad, playerSpawn);
+        if (changeCheckPoint)
+        {
+            GameManager.instance.spawnPosition = playerSpawn;
+        }
+        else if (resetCheckPoint)
+        {
+            GameManager.instance.spawnPosition = GameManager.instance.origPosition;
+        }
     }
 }
