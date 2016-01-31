@@ -20,6 +20,7 @@ public class TalkToGoddes : MonoBehaviour {
         if (other.tag == "Player")
         {
             print("hablar");
+            gameObject.GetComponent<Animator>().Play("ConversacionConBruja");
 
         }
     }
