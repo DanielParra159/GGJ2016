@@ -3,15 +3,10 @@ using System.Collections;
 
 public class TalkToGoddes : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    public Door doorRight;
+    public Door doorLeft;
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -20,7 +15,14 @@ public class TalkToGoddes : MonoBehaviour {
         if (other.tag == "Player")
         {
             print("hablar");
+            gameObject.GetComponent<Animator>().Play("ConversacionConBruja");
 
         }
+    }
+
+    void openDoors()
+    {
+        doorRight.open();
+        doorLeft.open();
     }
 }

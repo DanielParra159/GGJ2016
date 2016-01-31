@@ -34,11 +34,11 @@ public class ResetPosition : MonoBehaviour {
 
         for (int i = 0; i < savedPositions.Length; ++i)
         {
-            print("save position x");
-            print(savedPositions[i].position.x);
-            print("movable position x");
+            //print("save position x");
+           // print(savedPositions[i].position.x);
+            //print("movable position x");
 
-            print(savedPositions[i].position.x);
+            //print(savedPositions[i].position.x);
             movableObjects[i].transform.position.Set(savedPositions[i].position.x, savedPositions[i].position.y, savedPositions[i].position.z);
         }
         
