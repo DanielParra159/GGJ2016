@@ -21,11 +21,12 @@ public class Enemy : MonoBehaviour {
 
     protected Life life;
 
-	Transform target;
-	Transform myTransform;
-	NavMeshAgent agent;
-	float distance;
-	float nextAttack = 0;
+	protected Transform target;
+	protected Transform myTransform;
+	protected NavMeshAgent agent;
+	protected float distance;
+	protected float nextAttack = 0.0f;
+	protected float currentAngle;
 
 	protected Animator animator;
 
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour {
 			shootsPool.Init ();
 		}
 		animator = gameObject.GetComponentInChildren<Animator>();
+		currentAngle = 0f;
 	}
 
 	// Use this for initialization
@@ -43,10 +45,14 @@ public class Enemy : MonoBehaviour {
 		myTransform = transform;
 		target = GameManager.instance.hero.transform;
 		agent = GetComponent<NavMeshAgent> ();
+
 		// Disparos
 		if (!isSeeker) {
-			shootsPool.Reset();
+			shootsPool.Reset ();
 			agent.Stop ();
+		} else {
+			agent.updatePosition = true;
+			agent.updateRotation = false;
 		}
 
         life = gameObject.GetComponent<Life>();
@@ -57,85 +63,65 @@ public class Enemy : MonoBehaviour {
     public void Reset()
     {
 		life.init();
-		animator.SetTrigger("restart");
+		animator.SetBool ("restart", true);
+		animator.SetBool ("dead", false);
     }
 	
 	// Update is called once per frame
 	void Update () {
 //		myTransform.LookAt(target);
-
 		animator.SetFloat("speed", agent.velocity.sqrMagnitude);
-
-		if (isSeeker) {
-			if (agent.velocity.x > 0.0f) {
-				animator.SetBool ("right", true);
-				animator.SetBool ("left", false);
-			} else {
-				animator.SetBool ("left", true);
-			}
-
-			if (agent.velocity.z > 0.0f) {
-				animator.SetBool ("up", true);
-			} else {
-				animator.SetBool ("down", true);
-			}
-		} else {
-			float distX = (target.position.x - agent.transform.position.x);
-			float distZ = (target.position.z - agent.transform.position.z);
-			if (distX > 0.0f) {
-				animator.SetBool ("left", false);
-				if (distZ > 0.0f) {
-					animator.SetBool ("down", false);
-					if (distX*distX >= distZ*distZ) {
-						animator.SetBool ("right", true);
-						animator.SetBool ("up", false);
-					} else {
-						animator.SetBool ("up", true);
-						animator.SetBool ("right", false);
-					}
-				} else {
-					animator.SetBool ("up", false);
-					if (distX*distX >= distZ*distZ) {
-						animator.SetBool ("right", true);
-						animator.SetBool ("down", false);
-					} else {
-						animator.SetBool ("down", true);
-						animator.SetBool ("right", false);
-					}
-				}
-			} else {
-				animator.SetBool ("right", false);
-				Debug.Log ("X " + distX*distX + " --  Z " + distZ*distZ);
-				if (distZ > 0.0f) {
-					animator.SetBool ("down", false);
-					if (distX*distX >= distZ*distZ) {
-						animator.SetBool ("left", true);
-						animator.SetBool ("up", false);
-					} else {
-						animator.SetBool ("up", true);
-						animator.SetBool ("left", false);
-					}
-				} else {
-					animator.SetBool ("up", false);
-					if (distX*distX >= distZ*distZ) {
-						animator.SetBool ("left", true);
-						animator.SetBool ("down", false);
-					} else {
-						animator.SetBool ("down", true);
-						animator.SetBool ("left", false);
-					}
-				}
-			}
-			if (distZ > 0.0f) {
-				animator.SetBool ("up", true);
-			} else {
-				animator.SetBool ("down", true);
-			}
-		}
 	}
 
 	void FixedUpdate() {
 		nextAttack -= Time.fixedDeltaTime;
+
+		float distX = (target.position.x - agent.transform.position.x);
+		float distZ = (target.position.z - agent.transform.position.z);
+		if (distX > 0.0f) {
+			animator.SetBool ("left", false);
+			if (distZ > 0.0f) {
+				animator.SetBool ("down", false);
+				if (distX >= distZ) {
+					animator.SetBool ("right", true);
+					animator.SetBool ("up", false);
+				} else {
+					animator.SetBool ("up", true);
+					animator.SetBool ("right", false);
+				}
+			} else {
+				animator.SetBool ("up", false);
+				if (distX*distX >= distZ*distZ) {
+					animator.SetBool ("right", true);
+					animator.SetBool ("down", false);
+				} else {
+					animator.SetBool ("down", true);
+					animator.SetBool ("right", false);
+				}
+			}
+		} else {
+			animator.SetBool ("right", false);
+			if (distZ > 0.0f) {
+				animator.SetBool ("down", false);
+				if (distX*distX >= distZ*distZ) {
+					animator.SetBool ("left", true);
+					animator.SetBool ("up", false);
+				} else {
+					animator.SetBool ("up", true);
+					animator.SetBool ("left", false);
+				}
+			} else {
+				animator.SetBool ("up", false);
+				if (distX <= distZ) {
+					animator.SetBool ("left", true);
+					animator.SetBool ("down", false);
+				} else {
+					animator.SetBool ("down", true);
+					animator.SetBool ("left", false);
+				}
+			}
+		}
+
 		if (nextAttack < 0.0f) {
 			animator.SetBool ("attack", true);
 			findTarget ();
@@ -149,7 +135,6 @@ public class Enemy : MonoBehaviour {
 		if (isSeeker) {
 			distance = Vector3.Distance (target.position, myTransform.position);
 			if (distance < 1.0f) {
-				Debug.Log ("Hit!");
 				nextAttack = damageTimer;
 				target.GetComponent<Life> ().OnDamage (damage);
 			} else if (distance < 5.0f) {
@@ -163,17 +148,38 @@ public class Enemy : MonoBehaviour {
 	void attackTarget() {
 		nextAttack = damageTimer;
 		// Disparar
-		Vector2 shootTarget = new Vector2(target.position.x, target.position.z);
-		shootTarget.Normalize ();
+//		Vector2 shootTarget = new Vector2(target.position.x, target.position.z);
+//		shootTarget.Normalize ();
+//		GameObject shootAux = shootsPool.getObject(false);
+//		shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
+
+		Vector3 targetDir = target.position - myTransform.position;
+		// Devolvemos el spawn a su sitio inicial
+		shootSpawn.RotateAround(myTransform.position, Vector3.up, -currentAngle);
+		float shotAngle = Vector3.Angle(myTransform.forward, targetDir);
+		Debug.Log ("shotAngle " + shotAngle);
+		if (targetDir.x < 0f)
+		{
+			shotAngle *= -1;
+		}
+		currentAngle = shotAngle;
+		shootSpawn.RotateAround(myTransform.position, Vector3.up, shotAngle);
 		GameObject shootAux = shootsPool.getObject(false);
 		shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
 	}
     public void onDamage(float currentLif)
-    {
-
+	{
+		Debug.Log ("Enemy local onDamage!!");
+//		animator.SetBool("damage", true);
     }
     public void onDead()
     {
-        gameObject.SetActive(false);
+		gameObject.SetActive(false);
+		animator.SetBool ("dead", true);
     }
+
+	void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log ("Enemy local Collision!!");
+	}
 }

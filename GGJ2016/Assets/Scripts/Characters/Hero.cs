@@ -26,15 +26,14 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
 
         animator.SetFloat("horizontal", lookDir.x);
         animator.SetFloat("vertical", lookDir.z);        if (lookDir != Vector3.zero)        {
-            //shootSpawn.rotation = Quaternion.LookRotation(lookDir, Vector3.up);            //myTransform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);        }
-
+            //shootSpawn.rotation = Quaternion.LookRotation(lookDir, Vector3.up);            //myTransform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);        }
         timeToNextShoot -= Time.fixedDeltaTime;
         if (timeToNextShoot < 0.0f && shootAxis != Vector2.zero)
         {
             timeToNextShoot = shootRate;
             shootSpawn.RotateAround(myTransform.position, Vector3.up, -currentAngle);
             float shotAngle = Vector3.Angle(lookDir, new Vector3(0f, 0f, 1f));
-            if (lookDir.x == 0f)
+            if (lookDir.x == 0.0f)
             {
                 shotAngle *= lookDir.z;
             }
@@ -45,7 +44,7 @@ using System.Collections.Generic;[RequireComponent(typeof(Life))][RequireCom
             currentAngle = shotAngle;
             shootSpawn.RotateAround(myTransform.position, Vector3.up, shotAngle);
             GameObject shootAux = shootsPool.getObject(false);
-            Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
+//            Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
             shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
 
 
