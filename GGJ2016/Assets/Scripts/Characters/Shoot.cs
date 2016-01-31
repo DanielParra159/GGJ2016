@@ -49,7 +49,8 @@ public class Shoot : MonoBehaviour {
         gameObject.SetActive(true);
         this.owner = owner;
 
-        gameObject.GetComponentInChildren<Animator>().SetTrigger("shoot");
+        if (GetComponentInChildren<Animator>() != null)
+            gameObject.GetComponentInChildren<Animator>().SetTrigger("shoot");
     }
 
     void OnCollisionEnter(Collision collision)
@@ -67,8 +68,10 @@ public class Shoot : MonoBehaviour {
         {
             collision.gameObject.GetComponent<ColorWall>().collision(Vector3.Distance(originPos, collision.transform.position));
         }
-        else //enemy || player
+        else //enemy || player || boss
         {
+            Life life = collision.gameObject.GetComponent<Life>();
+            if (life == null) return;
             collision.gameObject.GetComponent<Life>().OnDamage(damage);
         }
 

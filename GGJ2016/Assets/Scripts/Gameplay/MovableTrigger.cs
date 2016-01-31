@@ -80,5 +80,6 @@ public class MovableTrigger : MonoBehaviour
     {
         currentTimePushing = 0.0f;
         movableParent.onExit(dir);
+        enter = false;
     }
 }

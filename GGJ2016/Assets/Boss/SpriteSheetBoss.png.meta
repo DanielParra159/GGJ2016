@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0d1d5e814b8935e47ab2bd9ab2d9421e
-timeCreated: 1454214756
+timeCreated: 1454233326
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -54,17 +54,6 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: SpriteSheetBoss_14
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 98
-        width: 5
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
     - name: SpriteSheetBoss_0
       rect:
         serializedVersion: 2
