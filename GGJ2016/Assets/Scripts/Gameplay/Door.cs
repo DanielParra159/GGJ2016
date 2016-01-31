@@ -26,13 +26,16 @@ public class Door : MonoBehaviour {
         if (opened){
             gameObject.GetComponent<Animator>().Play("AlreadyOpenHor");
             gameObject.GetComponent<Animator>().Play("AlreadyOpenVer");
+            collider.enabled = false;
+
                 
         }
         else
         {
             gameObject.GetComponent<Animator>().Play("AlreadyCloseHor");
             gameObject.GetComponent<Animator>().Play("AlreadyCloseVer");
-
+            collider.enabled = true;
+            
         }
 
         
@@ -40,18 +43,22 @@ public class Door : MonoBehaviour {
 	// Use this for initialization
     void OnEnable()
     {
+        collider = gameObject.GetComponent<BoxCollider>();
+
         gameObject.GetComponent<Animator>().SetBool("Open", opened);
 
         if (opened)
         {
             gameObject.GetComponent<Animator>().Play("AlreadyOpenHor");
             gameObject.GetComponent<Animator>().Play("AlreadyOpenVer");
+            collider.enabled = false;
 
         }
         else
         {
             gameObject.GetComponent<Animator>().Play("AlreadyCloseHor");
             gameObject.GetComponent<Animator>().Play("AlreadyCloseVer");
+            collider.enabled = true;
 
         }
         if (chronometer)
