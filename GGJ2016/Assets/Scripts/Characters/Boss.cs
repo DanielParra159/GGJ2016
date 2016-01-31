@@ -24,6 +24,10 @@ public class Boss : MonoBehaviour {
     protected GameObject hero;
     protected bool unit = false;
 
+    public GameObject shield;
+
+    protected Animator animator;
+
     void Awake()
     {
         myTransform = transform;
@@ -34,7 +38,7 @@ public class Boss : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         shootsPool.Reset();
-
+        animator = gameObject.GetComponentInChildren<Animator>();
         life = gameObject.GetComponent<Life>();
         life.registerOnDead(onDead);
         life.registerOnDamage(onDamage);
@@ -46,7 +50,7 @@ public class Boss : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (!unit) return;
-        Vector3 dir = hero.transform.position - myTransform.position;
+        Vector3 dir = hero.transform.position - shootSpawn.position;
         dir.Normalize();
         dir.y = 0.0f;
         Vector3 lookDir = (Vector3.right * dir.x + Vector3.forward * dir.z);
@@ -72,7 +76,7 @@ public class Boss : MonoBehaviour {
 
             
             timeToNextShoot = shootRate;
-            shootSpawn.RotateAround(myTransform.position, Vector3.up, -currentAngle);
+            //shootSpawn.RotateAround(myTransform.position, Vector3.up, -currentAngle);
             float shotAngle = Vector3.Angle(lookDir, new Vector3(0f, 0f, 1f));
             if (lookDir.x == 0.0f)
             {
@@ -83,10 +87,12 @@ public class Boss : MonoBehaviour {
                 shotAngle *= lookDir.x;
             }
             currentAngle = shotAngle;
-            shootSpawn.RotateAround(myTransform.position, Vector3.up, shotAngle);
+            //shootSpawn.RotateAround(myTransform.position, Vector3.up, shotAngle);
+            shootSpawn.forward = dir;
             GameObject shootAux = shootsPool.getObject(false);
             //            Vector3 dir = (Vector3.right * shootAxis.x + Vector3.forward * shootAxis.y);
-            shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, Quaternion.FromToRotation(Vector3.right, dir), shootDamage, this.gameObject);
+            shootAux.GetComponent<Shoot>().Spawn(shootSpawn.position, shootSpawn.rotation, shootDamage, this.gameObject);
+            animator.SetTrigger("attack");
         }
 	}
 
@@ -96,6 +102,6 @@ public class Boss : MonoBehaviour {
     }
     public void onDead()
     {
-
+        animator.SetTrigger("death");
     }
 }
