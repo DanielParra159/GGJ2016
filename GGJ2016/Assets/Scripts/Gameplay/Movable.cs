@@ -44,7 +44,7 @@ public class Movable : MonoBehaviour {
     {
         if (!firstTime)
             transform.position = originPos;
-        moving = false;
+        firstTime = false;
     }
 
 	// Update is called once per frame
